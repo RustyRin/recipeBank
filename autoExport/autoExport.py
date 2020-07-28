@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 
 
-DOMAIN = 'YOUR DOMAIN HERE'
+DOMAIN = 'YOUR DOMAIN HERE' # with / included
 PATH = 'YOUR WEBDRIVER PATH HERE'
 numberOfEmptyRecipesBeforQuit = 10
 username = 'YOUR USERNAME HERE'
@@ -17,7 +17,7 @@ password = 'YOUR PASSWORD HERE'
 
 
 driver = webdriver.Chrome(PATH)
-driver.get(DOMAIN + '/accounts/login/')
+driver.get(DOMAIN + 'accounts/login/')
 
 usernameBox = driver.find_element_by_id('id_username').send_keys(username)
 passwordBox = driver.find_element_by_id('id_password').send_keys(password)
@@ -25,12 +25,12 @@ loginButton = driver.find_element_by_class_name('btn.btn-primary').click()
 
 run = True
 currentRecipe = 1
-currentURL = DOMAIN + '/export/?r='
+currentURL = DOMAIN + 'export/?r='
 emptyRecipesInARow = 0
 wait = WebDriverWait(driver, 10)
 
 while (run==True):
-    currentURL = DOMAIN + '/export/?r=' + str(currentRecipe)
+    currentURL = DOMAIN + 'export/?r=' + str(currentRecipe)
     driver.get(currentURL)
 
     if emptyRecipesInARow > numberOfEmptyRecipesBeforQuit:
