@@ -6,6 +6,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
+from colorama import init, Fore, Back, Style
 
 
 DOMAIN = 'YOUR DOMAIN HERE' # with / included
@@ -37,7 +38,7 @@ while (run==True):
         driver.quit()
     else:
         if driver.find_element_by_id('select2-id_recipe-container').get_attribute('title') == '---------':
-            print('EMPTY RECIPE, #' + str(currentRecipe))
+            print(Fore.RED + 'EMPTY RECIPE' + Style.RESET_ALL + ', #' + str(currentRecipe))
             emptyRecipesInARow  = emptyRecipesInARow + 1
             currentRecipe = currentRecipe + 1
         else:
@@ -49,4 +50,4 @@ while (run==True):
             currentRecipe = currentRecipe + 1
             emptyRecipesInARow = 0
 
-            print('FOUND RECIPE, #' + str(currentRecipe))
+            print(Back.GREEN + 'FOUND' + Style.RESET_ALL + ' RECIPE, #' + str(currentRecipe))
